@@ -46,3 +46,20 @@ export const selectedKeg = keg => ({
 export const noKegSelected = ({
   type: c.NO_KEG_SELECTED
 });
+
+export const addPintToTab = pint => {
+  const { name, brand, price, id } = pint;
+  return {
+    type: c.ADD_PINT_TO_TAB,
+    name: name,
+    brand: brand,
+    price: price,
+    quantity: 1,
+    id: id
+  }
+}
+
+export const deletePintFromTab = id => ({
+  type: c.DELETE_PINT_FROM_TAB,
+  id: id
+});

@@ -5,7 +5,7 @@ import masterKegListReducer from '../../reducers/master-keg-list-reducer';
 import selectedKegReducer from '../../reducers/selected-keg-reducer';
 import tabPintListReducer from '../../reducers/tab-pint-list-reducer';
 import totalPriceReducer from '../../reducers/total-price-reducer';
-import * as c from './../../actions/ActionTypes'
+import * as c from './../../actions/ActionTypes';
 
 let store = createStore(rootReducer);
 

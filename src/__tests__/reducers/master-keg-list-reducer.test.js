@@ -1,5 +1,5 @@
 import masterKegListReducer from '../../reducers/master-keg-list-reducer';
-import * as c from './../../actions/ActionTypes'
+import * as c from './../../actions/ActionTypes';
 
 describe('masterKegListReducer', () => {
 

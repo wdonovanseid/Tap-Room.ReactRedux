@@ -1,5 +1,5 @@
 import currentPageReducer from '../../reducers/current-page-reducer';
-import * as c from './../../actions/ActionTypes'
+import * as c from './../../actions/ActionTypes';
 
 describe('currentPageReducer', () => {
 
