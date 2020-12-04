@@ -13,9 +13,6 @@ class TapRoomControl extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      currentPage: "kegList",
-      masterKegList: [],
-      selectedKeg: null,
       tabPintList: [],
       totalPrice: 0.00
     }
@@ -25,9 +22,7 @@ class TapRoomControl extends React.Component {
   handleClick = () => {
     if (this.props.currentPage !== 'kegList') {
       this.props.dispatch(a.showKegList);
-      this.setState({
-        selectedKeg: null
-      });
+      this.props.dispatch(a.noKegSelected);
     } else {
       this.props.dispatch(a.showNewKegForm);
     }
@@ -39,11 +34,9 @@ class TapRoomControl extends React.Component {
   }
 
   handleChangingSelectedKeg = (id) => {
-    const selectedKeg = this.state.masterKegList.filter(x => x.id === id)[0];
-    this.setState({
-      selectedKeg: selectedKeg,
-      currentPage: 'kegDetail'
-    });
+    const keg = this.props.masterKegList[id];
+    this.props.dispatch(a.selectedKeg(keg));
+    this.props.dispatch(a.showKegDetails);
   }
 
   handleBuyClick = (id) => {
@@ -74,17 +67,13 @@ class TapRoomControl extends React.Component {
   handleEditingKegInList = (KegToEdit) => {
     this.props.dispatch(a.addKeg(KegToEdit));
     this.props.dispatch(a.showKegList);
-    this.setState({
-      selectedKeg: null
-    });
+    this.props.dispatch(a.noKegSelected);
   }
 
   handleDeletingKeg = (id) => {
     this.props.dispatch(a.deleteKeg(id));
     this.props.dispatch(a.showKegList);
-    this.setState({
-      selectedKeg: null,
-    });
+    this.props.dispatch(a.noKegSelected);
   }
 
   handleRestockClick = (id) => {
@@ -131,13 +120,13 @@ class TapRoomControl extends React.Component {
     } else if (this.props.currentPage === 'editKeg') {
       currentlyVisibleState =
         <EditKegForm
-          keg={this.state.selectedKeg}
+          keg={this.props.selectedKeg}
           onEditKeg={this.handleEditingKegInList} />
       buttonText = "Return to Keg List";
-    } else if (this.state.selectedKeg != null) {
+    } else if (this.props.selectedKeg != null) {
       currentlyVisibleState =
         <KegDetail
-          keg={this.state.selectedKeg}
+          keg={this.props.selectedKeg}
           onClickingBuy={this.handleBuyClick}
           onClickingEdit={this.handleEditClick}
           onClickingDelete={this.handleDeletingKeg}

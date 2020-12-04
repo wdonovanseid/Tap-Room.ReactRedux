@@ -43,6 +43,6 @@ export const selectedKeg = keg => ({
   selectedKeg: keg
 });
 
-export const noSelectedKeg = ({
+export const noKegSelected = ({
   type: c.NO_KEG_SELECTED
 });
