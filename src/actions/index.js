@@ -33,3 +33,7 @@ export const showKegDetails= ({
 export const showEditKegForm= ({
   type: c.SHOW_EDIT_KEG_FORM
 });
+
+export const showCurrentTab= ({
+  type: c.SHOW_CURRENT_TAB
+});

@@ -1,4 +1,4 @@
-import * as c from './../actions/ActionTypes';
+import * as c from '../actions/ActionTypes';
 
 export default (state = "kegList", action) => {
   switch (action.type) {
@@ -14,6 +14,9 @@ export default (state = "kegList", action) => {
     case c.SHOW_KEG_LIST:
       const newState4 = "kegList";
       return newState4;
+    case c.SHOW_CURRENT_TAB:
+      const newState5 = "checkTab";
+      return newState5;
     default:
       return state;
     }

@@ -23,30 +23,19 @@ class TapRoomControl extends React.Component {
   }
 
   handleClick = () => {
-    const {dispatch} = this.props;
     if (this.props.currentPage !== 'kegList') {
-      const action = a.showKegList;
-      dispatch(action);
+      this.props.dispatch(a.showKegList);
       this.setState({
-        // currentPage: 'kegList',
         selectedKeg: null
       });
     } else {
-      const action = a.showNewKegForm;
-      dispatch(action);
-      // this.setState({
-      //   currentPage: 'newKeg',
-      // });
+      this.props.dispatch(a.showNewKegForm);
     }
   }
 
   handleAddingNewKegToList = (newKeg) => {
-    const {dispatch} = this.props;
-    const newMasterKegList = this.state.masterKegList.concat(newKeg);
-    this.setState({
-      masterKegList: newMasterKegList,
-      currentPage: 'kegList'
-    });
+    this.props.dispatch(a.addKeg(newKeg));
+    this.props.dispatch(a.showKegList);
   }
 
   handleChangingSelectedKeg = (id) => {
@@ -79,26 +68,22 @@ class TapRoomControl extends React.Component {
   }
 
   handleEditClick = () => {
-    this.setState({ currentPage: 'editKeg' });
+    this.props.dispatch(a.showEditKegForm);
   }
 
   handleEditingKegInList = (KegToEdit) => {
-    const editedMasterKegList = this.state.masterKegList
-      .filter(x => x.id !== this.state.selectedKeg.id)
-      .concat(KegToEdit);
+    this.props.dispatch(a.addKeg(KegToEdit));
+    this.props.dispatch(a.showKegList);
     this.setState({
-      masterKegList: editedMasterKegList,
-      currentPage: 'kegList',
       selectedKeg: null
     });
   }
 
   handleDeletingKeg = (id) => {
-    const newMasterKegList = this.state.masterKegList.filter(x => x.id !== id);
+    this.props.dispatch(a.deleteKeg(id));
+    this.props.dispatch(a.showKegList);
     this.setState({
-      masterKegList: newMasterKegList,
       selectedKeg: null,
-      currentPage: 'kegList'
     });
   }
 
@@ -109,7 +94,7 @@ class TapRoomControl extends React.Component {
   }
 
   handleCheckTab = () => {
-    this.setState({ currentPage: 'checkTab' });
+    this.props.dispatch(a.showCurrentTab);
   }
 
   handleCancelOrderClick = (id) => {
@@ -136,14 +121,14 @@ class TapRoomControl extends React.Component {
   render() {
     let currentlyVisibleState = null;
     let buttonText = null;
-    if (this.state.currentPage === 'checkTab') {
+    if (this.props.currentPage === 'checkTab') {
       currentlyVisibleState =
         <Tab
           pintList={this.state.tabPintList}
           onClickingCancelOrder={this.handleCancelOrderClick}
           totalTab={this.state.totalPrice} />
       buttonText = "Return to Keg List";
-    } else if (this.state.currentPage === 'editKeg') {
+    } else if (this.props.currentPage === 'editKeg') {
       currentlyVisibleState =
         <EditKegForm
           keg={this.state.selectedKeg}
@@ -166,7 +151,7 @@ class TapRoomControl extends React.Component {
     } else {
       currentlyVisibleState =
         <KegList
-          kegList={this.state.masterKegList}
+          kegList={this.props.masterKegList}
           onKegSelection={this.handleChangingSelectedKeg} />;
       buttonText = "Add Keg";
     }
