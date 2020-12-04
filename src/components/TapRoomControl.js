@@ -10,14 +10,6 @@ import { connect } from 'react-redux';
 import * as a from './../actions/index.js';
 
 class TapRoomControl extends React.Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      tabPintList: [],
-      totalPrice: 0.00
-    }
-    this.handleClick = this.handleClick.bind(this);
-  }
 
   handleClick = () => {
     if (this.props.currentPage !== 'kegList') {
@@ -83,24 +75,13 @@ class TapRoomControl extends React.Component {
   }
 
   handleCancelOrderClick = (id) => {
-    const pint = this.state.tabPintList.filter(x => x.id === id)[0];
-    let newPintList = this.state.tabPintList;
-    if (pint.quantity > 1) {
-      pint.quantity -= 1;
+    const cancelPint = this.props.tabPintList[id];
+    if (cancelPint.quantity > 1) {
+      cancelPint.quantity -= 1;
     } else {
-      if (this.state.tabPintList.length > 1) {
-        const index = this.state.tabPintList.findIndex(x => x.id === id);
-        const copyPint = [...this.state.tabPintList];
-        copyPint.splice(index, 1);
-        newPintList = copyPint;
-      } else {
-        newPintList = [];
-      }
+      this.props.dispatch(a.deletePintFromTab(id));
     }
-    this.setState({
-      tabPintList: newPintList,
-      totalPrice: this.state.totalPrice - pint.price
-    });
+    this.props.dispatch(a.removeCostFromTab(cancelPint.price));
   }
 
   render() {
@@ -109,9 +90,9 @@ class TapRoomControl extends React.Component {
     if (this.props.currentPage === 'checkTab') {
       currentlyVisibleState =
         <Tab
-          pintList={this.state.tabPintList}
+          pintList={this.props.tabPintList}
           onClickingCancelOrder={this.handleCancelOrderClick}
-          totalTab={this.state.totalPrice} />
+          totalTab={this.props.totalPrice} />
       buttonText = "Return to Keg List";
     } else if (this.props.currentPage === 'editKeg') {
       currentlyVisibleState =

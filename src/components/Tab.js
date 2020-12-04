@@ -10,7 +10,7 @@ function Tab(props) {
         <h2>Your Tab - ${props.totalTab.toFixed(2)}</h2>
         <hr />
         <ul>
-          {props.pintList.map((x) =>
+          {Object.values(props.pintList).map((x) =>
             <Pint
               whenCancelClicked={props.onClickingCancelOrder}
               name={x.name}
