@@ -5,6 +5,8 @@ import KegDetail from './KegDetail';
 import EditKegForm from './EditKegForm';
 import './css/TapRoomControl.css';
 import Tab from './Tab';
+import { connect } from 'react-redux';
+import * as a from './../actions/index.js';
 
 class TapRoomControl extends React.Component {
   constructor(props){
@@ -172,5 +174,25 @@ class TapRoomControl extends React.Component {
     );
   }
 }
+
+TapRoomControl.propTypes = {
+  currentPage: PropTypes.string,
+  masterKegList: PropTypes.object,
+  selectedKeg: PropTypes.object,
+  tabPintList: PropTypes.object,
+  totalPrice: PropTypes.number
+};
+
+const mapStateToProps = state => {
+  return {
+    currentPage: state.currentPage,
+    masterKegList: state.masterKegList,
+    selectedKeg: state.selectedKeg,
+    tabPintList: state.tabPintList,
+    totalPrice: state.totalPrice
+  }
+}
+
+TapRoomControl = connect(mapStateToProps)(TapRoomControl);
 
 export default TapRoomControl;
