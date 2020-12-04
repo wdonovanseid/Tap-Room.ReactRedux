@@ -66,24 +66,20 @@ class TapRoomControl extends React.Component {
   }
 
   handleBuyClick = (id) => {
-    const selectedKeg = this.state.masterKegList.filter(x => x.id === id)[0];
+    const selectedKeg = this.props.masterKegList[id];
     selectedKeg.pints -= 1;
-    const pint = {...selectedKeg};
-    pint.quantity = 1;
-    const newPintList = this.state.tabPintList.concat(pint);
-    const temp = [];
-    newPintList.forEach((item) => {
-      if (temp.some(x => x.id === item.id)) {
-        const sameItem = temp.find(x => x.id === item.id)
-        sameItem.quantity += 1;
-      } else {
-        temp.push(item);
-      }
-    })
-    this.setState({
-      tabPintList: temp,
-      totalPrice: this.state.totalPrice + pint.price
-    });
+    const newPint = {...selectedKeg};
+    const pintList = Object.values(this.props.tabPintList);
+    if (pintList.some(x => x.id === newPint.id)){
+      pintList.forEach(pint => {
+        if (pint.id === newPint.id) {
+          pint.quantity+=1;
+        }
+      });
+    } else {
+      this.props.dispatch(a.addPintToTab(newPint));
+    }
+    this.props.dispatch(a.addCostToTab(newPint.price));
   }
 
   handleCancelOrderClick = (id) => {

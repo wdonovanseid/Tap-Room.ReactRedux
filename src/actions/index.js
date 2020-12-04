@@ -63,3 +63,13 @@ export const deletePintFromTab = id => ({
   type: c.DELETE_PINT_FROM_TAB,
   id: id
 });
+
+export const addCostToTab = cost => ({
+  type: c.ADD_COST_TO_TAB,
+  pintCost: cost
+});
+
+export const removeCostFromTab = cost => ({
+  type: c.REMOVE_COST_FROM_TAB,
+  pintCost: cost
+});
