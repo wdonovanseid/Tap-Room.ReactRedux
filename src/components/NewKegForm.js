@@ -4,15 +4,6 @@ import PropTypes from "prop-types";
 import ReusableForm from './ReusableForm';
 
 function NewKegForm(props) {
-  return (
-    <React.Fragment>
-      <h2>Add a new Keg</h2>
-      <hr />
-      <ReusableForm
-        formSubmissionHandler={handleNewKegFormSubmission}
-        formButtonText="Add Keg" />
-    </React.Fragment>
-  );
   function handleNewKegFormSubmission(event) {
     event.preventDefault();
     props.onNewKegCreation({
@@ -24,6 +15,15 @@ function NewKegForm(props) {
       id: v4()
     });
   }
+  return (
+    <React.Fragment>
+      <h2>Add a new Keg</h2>
+      <hr />
+      <ReusableForm
+        formSubmissionHandler={handleNewKegFormSubmission}
+        formButtonText="Add Keg" />
+    </React.Fragment>
+  );
 }
 
 NewKegForm.propTypes = {
