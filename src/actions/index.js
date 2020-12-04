@@ -18,22 +18,31 @@ export const deleteKeg = id => ({
   id
 });
 
-export const showKegList= ({
+export const showKegList = ({
   type: c.SHOW_KEG_LIST
 });
 
-export const showNewKegForm= ({
+export const showNewKegForm = ({
   type: c.SHOW_NEW_KEG_FORM
 });
 
-export const showKegDetails= ({
+export const showKegDetails = ({
   type: c.SHOW_KEG_DETAILS
 });
 
-export const showEditKegForm= ({
+export const showEditKegForm = ({
   type: c.SHOW_EDIT_KEG_FORM
 });
 
-export const showCurrentTab= ({
+export const showCurrentTab = ({
   type: c.SHOW_CURRENT_TAB
+});
+
+export const selectedKeg = keg => ({
+  type: c.SELECTED_KEG,
+  selectedKeg: keg
+});
+
+export const noSelectedKeg = ({
+  type: c.NO_KEG_SELECTED
 });
