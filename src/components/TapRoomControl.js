@@ -39,6 +39,32 @@ class TapRoomControl extends React.Component {
     this.props.dispatch(a.showKegDetails);
   }
 
+  handleEditClick = () => {
+    this.props.dispatch(a.showEditKegForm);
+  }
+
+  handleEditingKegInList = (KegToEdit) => {
+    this.props.dispatch(a.addKeg(KegToEdit));
+    this.props.dispatch(a.showKegList);
+    this.props.dispatch(a.noKegSelected);
+  }
+
+  handleDeletingKeg = (id) => {
+    this.props.dispatch(a.deleteKeg(id));
+    this.props.dispatch(a.showKegList);
+    this.props.dispatch(a.noKegSelected);
+  }
+
+  handleRestockClick = (id) => {
+    const selectedKeg = this.props.masterKegList[id];
+    selectedKeg.pints = 124;
+    this.setState({});
+  }
+
+  handleCheckTab = () => {
+    this.props.dispatch(a.showCurrentTab);
+  }
+
   handleBuyClick = (id) => {
     const selectedKeg = this.state.masterKegList.filter(x => x.id === id)[0];
     selectedKeg.pints -= 1;
@@ -58,32 +84,6 @@ class TapRoomControl extends React.Component {
       tabPintList: temp,
       totalPrice: this.state.totalPrice + pint.price
     });
-  }
-
-  handleEditClick = () => {
-    this.props.dispatch(a.showEditKegForm);
-  }
-
-  handleEditingKegInList = (KegToEdit) => {
-    this.props.dispatch(a.addKeg(KegToEdit));
-    this.props.dispatch(a.showKegList);
-    this.props.dispatch(a.noKegSelected);
-  }
-
-  handleDeletingKeg = (id) => {
-    this.props.dispatch(a.deleteKeg(id));
-    this.props.dispatch(a.showKegList);
-    this.props.dispatch(a.noKegSelected);
-  }
-
-  handleRestockClick = (id) => {
-    const selectedKeg = this.state.masterKegList.filter(x => x.id === id)[0];
-    selectedKeg.pints = 124;
-    this.setState({});
-  }
-
-  handleCheckTab = () => {
-    this.props.dispatch(a.showCurrentTab);
   }
 
   handleCancelOrderClick = (id) => {
