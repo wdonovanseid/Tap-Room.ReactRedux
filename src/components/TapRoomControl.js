@@ -23,19 +23,25 @@ class TapRoomControl extends React.Component {
   }
 
   handleClick = () => {
-    if (this.state.currentPage !== 'kegList') {
+    const {dispatch} = this.props;
+    if (this.props.currentPage !== 'kegList') {
+      const action = a.showKegList;
+      dispatch(action);
       this.setState({
-        currentPage: 'kegList',
+        // currentPage: 'kegList',
         selectedKeg: null
       });
     } else {
-      this.setState({
-        currentPage: 'newKeg',
-      });
+      const action = a.showNewKegForm;
+      dispatch(action);
+      // this.setState({
+      //   currentPage: 'newKeg',
+      // });
     }
   }
 
   handleAddingNewKegToList = (newKeg) => {
+    const {dispatch} = this.props;
     const newMasterKegList = this.state.masterKegList.concat(newKeg);
     this.setState({
       masterKegList: newMasterKegList,
@@ -152,7 +158,7 @@ class TapRoomControl extends React.Component {
           onClickingDelete={this.handleDeletingKeg}
           onClickingRestock={this.handleRestockClick} />
       buttonText = "Return to Keg List";
-    } else if (this.state.currentPage === 'newKeg') {
+    } else if (this.props.currentPage === 'newKeg') {
       currentlyVisibleState =
         <NewKegForm
           onNewKegCreation={this.handleAddingNewKegToList} />

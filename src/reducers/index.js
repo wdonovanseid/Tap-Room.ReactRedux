@@ -1,4 +1,3 @@
-import { Toast } from 'bootstrap';
 import { combineReducers } from 'redux';
 import currentPageReducer from './current-page-reducer';
 import masterKegListReducer from './master-keg-list-reducer';
