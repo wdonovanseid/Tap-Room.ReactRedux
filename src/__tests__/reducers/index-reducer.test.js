@@ -77,4 +77,26 @@ describe("rootReducer", () => {
     expect(store.getState().selectedKeg).toEqual(selectedKegReducer(undefined, action));
   });
 
+  test('Check that ADD_PINT_TO_TAB action works for tabPintListReducer and root reducer', () => {
+    const action = {
+      type: c.ADD_PINT_TO_TAB,
+      name: 'beer',
+      brand: 'BIG BRAND',
+      price: '4.99',
+      pints: 99,
+      id: 1
+    }
+    store.dispatch(action);
+    expect(store.getState().tabPintList).toEqual(tabPintListReducer(undefined, action));
+  });
+
+  test('Check that ADD_COST_TO_TAB action works for totalPriceReducer and root reducer', () => {
+    const action = {
+      type: c.ADD_COST_TO_TAB,
+      pintCost: 12.99
+    }
+    store.dispatch(action);
+    expect(store.getState().totalPrice).toEqual(totalPriceReducer(undefined, action));
+  });
+
 });
