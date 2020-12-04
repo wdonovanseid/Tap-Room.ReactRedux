@@ -5,6 +5,7 @@ import KegDetail from './KegDetail';
 import EditKegForm from './EditKegForm';
 import './css/TapRoomControl.css';
 import Tab from './Tab';
+import PropTypes from "prop-types";
 import { connect } from 'react-redux';
 import * as a from './../actions/index.js';
 
