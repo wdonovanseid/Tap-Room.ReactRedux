@@ -74,4 +74,36 @@ describe('actions', () => {
     });
   });
 
+  it('addPintToTab should create ADD_KEG action', () => {
+    expect(actions.addPintToTab(kegData)).toEqual({
+      type: c.ADD_PINT_TO_TAB,
+      name: kegData.name,
+      brand: kegData.brand,
+      price: kegData.price,
+      quantity: 1,
+      id: kegData.id
+    });
+  });
+
+  it('deletePintFromTab should create DELETE_PINT_FROM_TAB action', () => {
+    expect(actions.deletePintFromTab(1)).toEqual({
+      type: c.DELETE_PINT_FROM_TAB,
+      id: 1
+    });
+  });
+
+  it('addCostToTab should create ADD_COST_TO_TAB action', () => {
+    expect(actions.addCostToTab(4.99)).toEqual({
+      type: c.ADD_COST_TO_TAB,
+      pintCost: 4.99
+    });
+  });
+
+  it('removeCostFromTab should create REMOVE_COST_FROM_TAB action', () => {
+    expect(actions.removeCostFromTab(4.99)).toEqual({
+      type: c.REMOVE_COST_FROM_TAB,
+      pintCost: 4.99
+    });
+  });
+
 })
