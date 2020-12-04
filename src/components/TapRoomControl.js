@@ -8,6 +8,7 @@ import Tab from './Tab';
 import PropTypes from "prop-types";
 import { connect } from 'react-redux';
 import * as a from './../actions/index.js';
+import { v4 } from 'uuid';
 
 class TapRoomControl extends React.Component {
 
@@ -62,13 +63,16 @@ class TapRoomControl extends React.Component {
     selectedKeg.pints -= 1;
     const newPint = {...selectedKeg};
     const pintList = Object.values(this.props.tabPintList);
-    if (pintList.some(x => x.id === newPint.id)){
+    if (pintList.some(x => x.id === newPint.id && x.name === newPint.name && x.brand === newPint.brand)){
       pintList.forEach(pint => {
-        if (pint.id === newPint.id) {
+        if (pint.id === newPint.id && pint.name === newPint.name && pint.brand === newPint.brand) {
           pint.quantity+=1;
         }
       });
     } else {
+      if (pintList.some(x => x.id === newPint.id)) {
+        newPint.id = v4();
+      }
       this.props.dispatch(a.addPintToTab(newPint));
     }
     this.props.dispatch(a.addCostToTab(newPint.price));
