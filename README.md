@@ -1,12 +1,12 @@
 # _Tap-Room_
 
-#### _Epicodus Project React Fundamentals Tap-Room, 11/20/2020_
+#### _Epicodus Project React/Redux Fundamentals Tap-Room, 11/20/2020_
 
 #### By _**William Donovan-Seid**_
 
 ## Description
 
-_This is an Epicodus Friday Project in using React Fundamentals to create web application where a bar can track their kegs._
+_This is an Epicodus Friday Project in using React/Redux Fundamentals to create web application where a bar can track their kegs._
 
 ## Component Diagram
 
