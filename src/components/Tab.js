@@ -26,7 +26,7 @@ function Tab(props) {
 }
 
 Tab.propTypes = {
-  pintList: PropTypes.array,
+  pintList: PropTypes.object,
   totalTab: PropTypes.number
 };
 

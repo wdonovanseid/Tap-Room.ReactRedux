@@ -50,7 +50,7 @@ ReusableForm.propTypes = {
   name: PropTypes.string,
   brand: PropTypes.string,
   price: PropTypes.number,
-  alcoholContent: PropTypes.number,
+  alcoholContent: PropTypes.string,
   pints: PropTypes.number
 };
 

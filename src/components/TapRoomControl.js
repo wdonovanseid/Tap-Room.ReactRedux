@@ -63,16 +63,29 @@ class TapRoomControl extends React.Component {
     selectedKeg.pints -= 1;
     const newPint = {...selectedKeg};
     const pintList = Object.values(this.props.tabPintList);
-    if (pintList.some(x => x.id === newPint.id && x.name === newPint.name && x.brand === newPint.brand)){
+
+    // const samePintDifferentID = pintList.find(pint => pint.id !== newPint.id && pint.name === newPint.name && pint.brand === newPint.brand && pint.price === newPint.price)
+    // if (samePintDifferentID != undefined) {
+    //   newPint.id = samePintDifferentID.id;
+    //   newPint.quantity+=samePintDifferentID.quantity;
+    // }
+    // const samePintSameID = pintList.find(pint => pint.id === newPint.id)
+
+    if (pintList.some(x => x.name === newPint.name && x.brand === newPint.brand && x.price === newPint.price)){
       pintList.forEach(pint => {
+        if (pint.id !== newPint.id && pint.name === newPint.name && pint.brand === newPint.brand && pint.price === newPint.price) {
+          newPint.id = pint.id;
+          newPint.quantity+=pint.quantity;
+        }
         if (pint.id === newPint.id && pint.name === newPint.name && pint.brand === newPint.brand) {
-          pint.quantity+=1;
+          newPint.quantity+=pint.quantity;
         }
       });
+      this.props.dispatch(a.addPintToTab(newPint));
     } else {
-      if (pintList.some(x => x.id === newPint.id)) {
-        newPint.id = v4();
-      }
+      // if (pintList.some(x => x.id === newPint.id)) {
+      //   newPint.id = v4();
+      // }
       this.props.dispatch(a.addPintToTab(newPint));
     }
     this.props.dispatch(a.addCostToTab(newPint.price));
