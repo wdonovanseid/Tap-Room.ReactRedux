@@ -6,7 +6,7 @@
 
 ## Description
 
-_This is an Epicodus Friday Project in using React/Redux Fundamentals to create web application where a bar can track their kegs._
+_This is an Epicodus Friday Project in using React/Redux Fundamentals to create web application where a theoretical bar can track their kegs, edit their kegs, delete their kegs, add pints of a keg to a tab, and cancel pints on a tab._
 
 ## Component Diagram
 
@@ -29,6 +29,7 @@ _If there are any questions or concerns, feel free to contact us at wdstwo@live.
 ## Technologies Used
 
 * _React_
+* _Redux_
 * _HTML_
 * _JavaScript_
 * _CSS_
