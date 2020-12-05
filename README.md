@@ -1,6 +1,6 @@
 # _Tap-Room_
 
-#### _Epicodus Project React/Redux Fundamentals Tap-Room, 11/20/2020_
+#### _Epicodus Project React/Redux Fundamentals Tap-Room, 12/4/2020_
 
 #### By _**William Donovan-Seid**_
 
